@@ -1,0 +1,46 @@
+Anotações
+
+Aula 53 - Criando Xpath
+
+No console do navegador (F12):
+
+//** Encontrando um elemento qualquer na página que possua a String/Texto "Feminino" **\\
+
+$x("//*[. = ' Feminino']")
+
+
+//** Utilizando outro operador para deixar a busca um pouco mais genérica **\\
+
+$x("//*[contains(., 'Feminino')]")
+
+Dessa forma foi percorrido todos os caminhos na página, um a um até que fosse encontrada a String/Texto "Feminino"
+
+
+//** Utilizando outra forma para encontrar de maneira específica **\\
+
+$x("//label[.=' Feminino']")
+
+
+//** Utilizando retorno de níveis **\\
+
+$x("//label[.=' Feminino']/..")
+
+Retornou para o [td]
+
+
+//** Direto ao  ponto - Acessando o local desejado **\\
+
+Neste caso o local desejado é o radio button do sexo feminino:
+
+$x("//label[.=' Feminino']/../input")
+
+outra maneira seria
+
+$x("//label[.=' Feminino']/..//input")
+
+Documento de referência:
+
+https://www.red-gate.com/simple-talk/wp-content/uploads/imported/1269-Locators_table_1_0_2.pdf?file=4937
+
+
+
