@@ -44,7 +44,7 @@ public class UserJsonTest {
 		
 		//path - With path is allowed get through json, xml, etc
 		
-		System.out.println(response.path("id"));
+		System.out.println((int)response.path("id"));
 		assertEquals(new Integer(1), response.path("id"));
 		assertEquals(new Integer(1), response.path("%s","id"));
 		
