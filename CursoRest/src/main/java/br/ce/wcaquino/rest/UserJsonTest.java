@@ -36,6 +36,7 @@ public class UserJsonTest {
 		;
 	}
 	
+	@SuppressWarnings({ "removal" })
 	@Test
 	public void deveVerificarPrimeiroNivelOutrasFormas() {
 		
