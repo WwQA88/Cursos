@@ -30,6 +30,7 @@ public class EnviaDadosTest {
 		given()
 			.log().all()
 			.queryParam("format", "xml") // Send attributes
+			.queryParam("outra", "coisa") // Send attributes
 		.when()
 			.get("http://restapi.wcaquino.me/v2/users")
 		.then()
@@ -46,7 +47,7 @@ public class EnviaDadosTest {
 		
 		given()
 			.log().all()
-			.accept(ContentType.XML) //Just to confirm if the data send is the request. Attention, do not make confuse with ContentType
+			.accept(ContentType.XML) //Just to confirm if the data sent is the request. Attention, do not make confuse with ContentType
 		.when()
 			.get("http://restapi.wcaquino.me/v2/users")
 		.then()
