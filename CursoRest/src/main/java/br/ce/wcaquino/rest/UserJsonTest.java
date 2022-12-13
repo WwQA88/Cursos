@@ -36,7 +36,6 @@ public class UserJsonTest {
 		;
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Test
 	public void deveVerificarPrimeiroNivelOutrasFormas() {
 		
@@ -45,7 +44,7 @@ public class UserJsonTest {
 		
 		//path - With path is allowed get through json, xml, etc
 		
-		System.out.println((int)response.path("id"));
+		System.out.println(response.path("id"));
 		assertEquals(new Integer(1), response.path("id"));
 		assertEquals(new Integer(1), response.path("%s","id"));
 		
@@ -102,7 +101,7 @@ public class UserJsonTest {
 			.get("http://restapi.wcaquino.me/users/4") // Access the website
 		.then()
 			.statusCode(404) // Validating if Status Code is responding "ERROR"
-			.body("error", is("Usuário inexistente"))
+			.body("error", is("Usuï¿½rio inexistente"))
 			;
 	}
 
@@ -115,7 +114,7 @@ public class UserJsonTest {
 		.then()
 			.statusCode(200) // Validating if Status Code is responding "SUCCESS"
 			.body("", hasSize(3)) // We can use "$" or "" to indicate the root
-			.body("name", hasItems("João da Silva","Maria Joaquina","Ana Júlia")) // Getting all attributes "name" in the array/list
+			.body("name", hasItems("Joï¿½o da Silva","Maria Joaquina","Ana Jï¿½lia")) // Getting all attributes "name" in the array/list
 			.body("age[1]", is(25)) // Validating "age" from index 1
 			.body("filhos.name", hasItem(Arrays.asList("Zezinho", "Luizinho"))) // Invoking an array/list inside another array/list
 			.body("salary",contains(1234.5678f, 2500, null)) // Validating all contents in the list - "f" float value
@@ -136,10 +135,10 @@ public class UserJsonTest {
 			.body("age.findAll{it <= 25 && it > 20}.size()",is(1))
 			.body("findAll{it.age <= 25 && it.age > 20}.name",hasItem("Maria Joaquina")) // If we invoke the method using "is", it will return an error because the "findAll" returns an array/list. In Reason that we will use "hasItem" 
 			.body("findAll{it.age <= 25}[0].name",is("Maria Joaquina")) // Returning an specific data using "[]"
-			.body("findAll{it.age <= 25}[-1].name",is("Ana Júlia")) // Returning the last data
+			.body("findAll{it.age <= 25}[-1].name",is("Ana Jï¿½lia")) // Returning the last data
 			.body("find{it.age <= 25}.name",is("Maria Joaquina")) // Returning the first data of the array/list
-			.body("findAll{it.name.contains('n')}.name",hasItems("Maria Joaquina", "Ana Júlia")) // Verifying if has 'n' in the String
-			.body("findAll{it.name.length() > 10}.name",hasItems("Maria Joaquina", "João da Silva")) // Verifying if has more than 10 characters in the String
+			.body("findAll{it.name.contains('n')}.name",hasItems("Maria Joaquina", "Ana Jï¿½lia")) // Verifying if has 'n' in the String
+			.body("findAll{it.name.length() > 10}.name",hasItems("Maria Joaquina", "Joï¿½o da Silva")) // Verifying if has more than 10 characters in the String
 			.body("name.collect{it.toUpperCase()}",hasItem("MARIA JOAQUINA")) // Getting the first data and transforming in Capital letter (UpperCase)
 			.body("name.findAll{it.startsWith('Maria')}.collect{it.toUpperCase()}",hasItem("MARIA JOAQUINA")) // Search in all array/list, find who starts with 'Maria' and transform the String in Capital letters
 			.body("name.findAll{it.startsWith('Maria')}.collect{it.toUpperCase()}.toArray()", anyOf(arrayContaining("MARIA JOAQUINA"),Matchers.arrayWithSize(1)))
